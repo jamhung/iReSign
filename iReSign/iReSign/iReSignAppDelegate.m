@@ -17,6 +17,7 @@ static NSString *kKeyInfoPlistApplicationProperties = @"ApplicationProperties";
 static NSString *kKeyInfoPlistApplicationPath       = @"ApplicationPath";
 static NSString *kPayloadDirName                    = @"Payload";
 static NSString *kProductsDirName                   = @"Products";
+static NSString *kFrameworksDirName                 = @"Frameworks";
 static NSString *kInfoPlistFilename                 = @"Info.plist";
 static NSString *kiTunesMetadataFileName            = @"iTunesMetadata";
 
@@ -427,6 +428,7 @@ static NSString *kiTunesMetadataFileName            = @"iTunesMetadata";
 }
 
 - (void)doCodeSigning {
+    
     appPath = nil;
     
     NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[workingPath stringByAppendingPathComponent:kPayloadDirName] error:nil];
@@ -442,6 +444,20 @@ static NSString *kiTunesMetadataFileName            = @"iTunesMetadata";
     }
     
     if (appPath) {
+        
+        // Must codesign any dynamic libraries within the *.app/Frameworks directory
+        NSString *frameworkLibrariesPath = [appPath stringByAppendingPathComponent:kFrameworksDirName];
+        NSArray *frameworksDir = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:frameworkLibrariesPath error:nil];
+        for (NSString *file in frameworksDir) {
+            if ([[[file pathExtension] lowercaseString] isEqualToString:@"dylib"]) {
+                NSTask *codeSignLibrariesTask = [[NSTask alloc] init];
+                [codeSignLibrariesTask setLaunchPath:@"/usr/bin/codesign"];
+                [codeSignLibrariesTask setArguments:@[@"-fs", [certComboBox objectValue], [frameworkLibrariesPath stringByAppendingPathComponent:file]]];
+                [codeSignLibrariesTask launch];
+                [codeSignLibrariesTask waitUntilExit];
+            }
+        }
+
         NSMutableArray *arguments = [NSMutableArray arrayWithObjects:@"-fs", [certComboBox objectValue], nil];
         NSDictionary *systemVersionDictionary = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
         NSString * systemVersion = [systemVersionDictionary objectForKey:@"ProductVersion"];
