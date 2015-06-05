@@ -23,7 +23,7 @@
 		4C8EAD44185B74B90095DC6B /* IRHelpWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRHelpWindow.m; sourceTree = "<group>"; };
 		5B9E4C4A166AB3F7006D9F8F /* IRTextFieldDrag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRTextFieldDrag.h; sourceTree = "<group>"; };
 		5B9E4C4B166AB3F7006D9F8F /* IRTextFieldDrag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRTextFieldDrag.m; sourceTree = "<group>"; };
-		C115EE2613815024003B9ACC /* iReSign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iReSign.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C115EE2613815024003B9ACC /* iGBSign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGBSign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C115EE2A13815024003B9ACC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C115EE2D13815024003B9ACC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		C115EE2E13815024003B9ACC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -65,7 +65,7 @@
 		C115EE2713815024003B9ACC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C115EE2613815024003B9ACC /* iReSign.app */,
+				C115EE2613815024003B9ACC /* iGBSign.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,7 +134,7 @@
 			);
 			name = iReSign;
 			productName = iReSign;
-			productReference = C115EE2613815024003B9ACC /* iReSign.app */;
+			productReference = C115EE2613815024003B9ACC /* iGBSign.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 				GCC_PREFIX_HEADER = "iReSign/iReSign-Prefix.pch";
 				INFOPLIST_FILE = "iReSign/iReSign-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iGBSign;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -294,7 +294,7 @@
 				GCC_PREFIX_HEADER = "iReSign/iReSign-Prefix.pch";
 				INFOPLIST_FILE = "iReSign/iReSign-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iGBSign;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

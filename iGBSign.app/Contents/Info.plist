@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>14B25</string>
+	<string>14D131</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
-	<string>iReSign</string>
+	<string>iGBSign</string>
 	<key>CFBundleIconFile</key>
 	<string>Icon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.appulize.iReSign</string>
+	<string>com.appulize.iGBSign</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>iReSign</string>
+	<string>iGBSign</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
