@@ -20,6 +20,7 @@ static NSString *kProductsDirName                   = @"Products";
 static NSString *kFrameworksDirName                 = @"Frameworks";
 static NSString *kInfoPlistFilename                 = @"Info.plist";
 static NSString *kiTunesMetadataFileName            = @"iTunesMetadata";
+static NSInteger kcodeSignTaskSuccessExitStatus      = 0;
 
 @implementation iReSignAppDelegate
 
@@ -455,6 +456,18 @@ static NSString *kiTunesMetadataFileName            = @"iTunesMetadata";
                 [codeSignLibrariesTask setArguments:@[@"-fs", [certComboBox objectValue], [frameworkLibrariesPath stringByAppendingPathComponent:file]]];
                 [codeSignLibrariesTask launch];
                 [codeSignLibrariesTask waitUntilExit];
+                int status = [codeSignLibrariesTask terminationStatus];
+                if (status == kcodeSignTaskSuccessExitStatus) {
+                    NSLog(@"Success");
+                } else {
+                    NSAlert *errorAlert = [[NSAlert alloc] init];
+                    [errorAlert addButtonWithTitle:@"OK"];
+                    [errorAlert setMessageText:[NSString stringWithFormat:@"Error codesigning library: %@", file]];
+                    [errorAlert setInformativeText:@"Please quit the app and try again"];
+                    [errorAlert setAlertStyle:NSCriticalAlertStyle];
+                    [errorAlert runModal];
+                    return;
+                }
             }
         }
 
