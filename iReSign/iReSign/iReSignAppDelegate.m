@@ -412,24 +412,20 @@ static NSInteger kcodeSignTaskSuccessExitStatus      = 0;
 
 - (void)doEntitlementsEdit
 {
-    [self doCodeSigning];
-    
-    // We don't want to include entitlements.plist file for distribution builds
-    
-//    NSDictionary* entitlements = entitlementsResult.propertyList;
-//    entitlements = entitlements[@"Entitlements"];
-//    NSString* filePath = [workingPath stringByAppendingPathComponent:@"entitlements.plist"];
-//    NSData *xmlData = [NSPropertyListSerialization dataWithPropertyList:entitlements format:NSPropertyListXMLFormat_v1_0 options:kCFPropertyListImmutable error:nil];
-//    if(![xmlData writeToFile:filePath atomically:YES]) {
-//        NSLog(@"Error writing entitlements file.");
-//        [self showAlertOfKind:NSCriticalAlertStyle WithTitle:@"Error" AndMessage:@"Failed entitlements generation"];
-//        [self enableControls];
-//        [statusLabel setStringValue:@"Ready"];
-//    }
-//    else {
-//        entitlementField.stringValue = filePath;
-//        [self doCodeSigning];
-//    }
+    NSDictionary* entitlements = entitlementsResult.propertyList;
+    entitlements = entitlements[@"Entitlements"];
+    NSString* filePath = [workingPath stringByAppendingPathComponent:@"entitlements.plist"];
+    NSData *xmlData = [NSPropertyListSerialization dataWithPropertyList:entitlements format:NSPropertyListXMLFormat_v1_0 options:kCFPropertyListImmutable error:nil];
+    if(![xmlData writeToFile:filePath atomically:YES]) {
+        NSLog(@"Error writing entitlements file.");
+        [self showAlertOfKind:NSCriticalAlertStyle WithTitle:@"Error" AndMessage:@"Failed entitlements generation"];
+        [self enableControls];
+        [statusLabel setStringValue:@"Ready"];
+    }
+    else {
+        entitlementField.stringValue = filePath;
+        [self doCodeSigning];
+    }
 }
 
 - (void)doCodeSigning {
